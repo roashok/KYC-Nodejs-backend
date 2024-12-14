@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const routes = require('./routes/routes')
+const cookieParser = require('cookie-parser')
 const cors = require('cors')
 require('dotenv').config()
 
@@ -10,6 +11,8 @@ mongoose.connect(process.env.connectID,{
 }).then(() => console.log('Connected to MongoDB'))
 .catch((error) => console.error('Connection error', error));
 app = express()
+
+app.use(cookieParser())
 
 app.use(cors({
     credentials:true,
